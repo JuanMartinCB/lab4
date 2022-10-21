@@ -1,1 +1,9 @@
-<%# Update me %><%= @monsters.inspect %>
+<h1>Listing all monsters</h1>
+<% @monsters.each do |monster| %>
+  <li><%= link_to monster.name, monster %>
+  <% if monster.tweets.count > 0 %>
+        <span style = "color:red">Twittero destacado</span>
+    <% end %>    
+    <span><%= button_to "Eliminar", monster, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%></span>
+    </li>
+<% end %>

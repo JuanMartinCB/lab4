@@ -1,1 +1,27 @@
-<%# Update me %><%= @monster.inspect %>
+<%# Update me %>
+
+<!--function so that if the monsters has 0 tweets, redirec to create a new tweet -->
+<% if @monster.tweets.count == 0 %>
+    <h5>Este monstruo no tiene tweets <span><%= link_to "Ir a crear tweet", new_tweet_path %></span></h5>
+    
+<% end %>
+
+<h1><%= @monster.name %></h1>
+<table class="table table-bordered ">
+  <thead class="table-dark text-center">
+    <tr>
+      <th scope="col">Descripción</th>
+      <th scope="col">Tweets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @monster.description %><span><%= button_to "Eliminar", @monster, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger"%></span></td> 
+      
+      <td>
+        <% @monster.tweets.each do |tweet| %>
+          <ul><%= tweet.content%></ul>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
